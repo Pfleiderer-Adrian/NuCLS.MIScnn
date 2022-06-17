@@ -167,6 +167,7 @@ class NuCLS_IO(Abstract_IO):
             img = img[:, :, 0]
         # Return image
         return img, {"type": "image"}
+    
     #---------------------------------------------#
     #              load_segmentation              #
     #---------------------------------------------#
@@ -199,26 +200,18 @@ class NuCLS_IO(Abstract_IO):
             new_im.paste(seg_raw)
             seg_raw = new_im
 
-
         # Convert segmentation from Pillow image to numpy matrix
         seg_pil = seg_raw
-        #seg_pil = seg_raw.convert("LA")
         seg = np.array(seg_pil)
-        #if "ANCHFOV" in index:
 
-        #seg = self.removeBoundingBoxes(seg, img_raw, index)
-        # Keep only intensity and remove maximum intensitiy range
         if len(seg.shape) > 2:
             seg_data = seg[:,:,0]
         else:
             seg_data = seg
 
-        # [(253, "fov"), (1, "tumor"), (2, "fibroblast"), (3, "lymphocyte"), (4, "plasma_cell"), (5, "macrophage"), (6, "mitotic_figure"), (7, "vascular_endotheliu"), (8, "myoepithelium"), (9, "apoptotic_body"), (10, "neutrophil"), (11, "ductal_epithelium"), (12, "eosinophil"), (99, "unlabeled")]
-
         seg_data = np.where(seg_data == 253, 0, seg_data)
         seg_data = np.where(seg_data == 99, 13, seg_data)
         if self.classes == 2:
-            # seg_data = np.where(seg_data == 6, 1, seg_data)
             seg_data = np.where(seg_data != 0, 1, seg_data)
         if self.classes == 3:
             for x in self.exclude_classes:
@@ -229,11 +222,6 @@ class NuCLS_IO(Abstract_IO):
             seg_data = np.where(seg_data == 5, 2, seg_data)
             seg_data = np.where(seg_data == 7, 2, seg_data)
             seg_data = np.where(seg_data == 4, 3, seg_data)
-            #seg_data = np.where(seg_data == 8, 4, seg_data)
-            #seg_data = np.where(seg_data == 9, 0, seg_data)
-            #seg_data = np.where(seg_data == 10, 0, seg_data)
-            #seg_data = np.where(seg_data == 11, 0, seg_data)
-            #seg_data = np.where(seg_data == 12, 0, seg_data)
             seg_data = np.where(seg_data >= 8, 0, seg_data)
         if self.classes == 5:
             seg_data = np.where(seg_data == 6, 1, seg_data)
@@ -246,29 +234,6 @@ class NuCLS_IO(Abstract_IO):
             seg_data = np.where(seg_data == 11, 4, seg_data)
             seg_data = np.where(seg_data == 12, 4, seg_data)
             seg_data = np.where(seg_data > 12, 0, seg_data)
-
-
-            """
-            seg_data = np.where(seg_data == 10, 0, seg_data)
-            seg_data = np.where(seg_data == 12, 0, seg_data)
-            seg_data = np.where(seg_data == 8, 0, seg_data)
-            seg_data = np.where(seg_data == 11, 0, seg_data)
-            seg_data = np.where(seg_data == 9, 0, seg_data)
-            seg_data = np.where(seg_data == 13, 0, seg_data)
-        
-            
-            for x in self.exclude_classes:
-                if x[0] in [6]:
-                    seg_data = np.where(seg_data == x[0], 1, seg_data)
-                if x[0] in [2, 5, 7]:
-                    seg_data = np.where(seg_data == x[0], 2, seg_data)
-                if x[0] in [3, 4]:
-                    seg_data = np.where(seg_data == x[0], 3, seg_data)
-                if x[0] in [10, 12, 8, 11]:
-                    seg_data = np.where(seg_data == x[0], 4, seg_data)
-                if x[0] in [9]:
-                    seg_data = np.where(seg_data == x[0], 5, seg_data)
-            """
         # Return segmentation
         return seg_data
     #---------------------------------------------#

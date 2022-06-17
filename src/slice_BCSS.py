@@ -15,9 +15,12 @@ def tile(filename, dir_in, dir_out, d):
 
 img_path = os.path.join(os.path.join(os.path.join("..", ".."), "0_Public-data-Amgad2019_0.25MPP"), "rgb")
 sample_list = os.listdir(img_path)
+
 for sample in sample_list:
     tile(sample, img_path, os.path.join(os.path.join(os.path.join("..", ".."), "BCCS_tiles"), "rgb"), 512)
+
 img_path = os.path.join(os.path.join(os.path.join("..", ".."), "0_Public-data-Amgad2019_0.25MPP"), "mask")
 sample_list = os.listdir(img_path)
+
 for sample in sample_list:
     tile(sample, img_path, os.path.join(os.path.join(os.path.join("..", ".."), "BCCS_tiles"), "mask"), 512)
