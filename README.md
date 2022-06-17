@@ -1,7 +1,6 @@
 # Nucleus Segmentation and Analysis in Breast Cancer with the MIScnn Framework
 
-[![arXiv](https://img.shields.io/badge/arXiv-2206.08182-b31b1b.svg?style=for-the-badge)](https://arxiv.org/abs/2206.08182)<br />
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
+[![arXiv](https://img.shields.io/badge/arXiv-2206.08182-b31b1b.svg?style=for-the-badge)](https://arxiv.org/abs/2206.08182)
 
 This repository provides the source code for the paper: "Nucleus Segmentation and Analysis in Breast Cancer with the MIScnn Framework" on arXiv.
 
