@@ -1,2 +1,2 @@
-# NuCLS.MIScnn
-Nucleus segmentation and analysis of breast cancer using the MIScnn Framework and the NuCLS dataset.
+# NuCLS.
+MIScnnThe NuCLS dataset contains over 220.000 annotations of cell nuclei in breast cancers. We show how to use these data to create a multi-rater model with the MIScnn Framework to automate the analysis of cell nuclei. For the model creation, we use the widespread U-Net approach embedded in a pipeline. This pipeline provides besides the high performance convolution neural network, several preprocessor techniques and a extended data exploration. The final model is tested in the evaluation phase using a wide variety of metrics with a subsequent visualization. Finally, the results are compared and interpreted with the results of the NuCLS study. As an outlook, indications are given which are important for the future development of models in the context of cell nuclei. 
